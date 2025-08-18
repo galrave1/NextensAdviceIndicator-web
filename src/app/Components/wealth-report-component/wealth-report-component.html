@@ -1,0 +1,26 @@
+<h2 class="mb-3">Wealth Tax</h2>
+
+<div *ngIf="loading" class="alert alert-info">Loading…</div>
+<div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+<table *ngIf="!loading && !error && rows.length"
+       class="table table-striped table-hover align-middle">
+  <thead class="table-light">
+    <tr>
+      <th>Client</th>
+      <th>Year</th>
+      <th class="text-end">Total Capital</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let x of rows">
+      <td><code>{{ x.clientId }}</code></td>
+      <td>{{ x.year }}</td>
+      <td class="text-end">{{ x.totalCapital | number:'1.0-0' }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!loading && !error && !rows.length" class="text-muted">
+  No clients triggered the wealth indicator.
+</p>
